@@ -1,5 +1,5 @@
 import React from 'react';
-import { Footer } from '../mui-treasury/layout-core-v6';
+import { Footer } from '../components/mui-treasury/layout-core-v6';
 
 const FooterLayout: React.FC = () => {
   return (

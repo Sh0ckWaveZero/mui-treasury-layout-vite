@@ -9,7 +9,7 @@ import {
   EdgeTemporaryClose,
   layoutClasses,
   toggleEdgeSidebarCollapse,
-} from '../mui-treasury/layout-core-v6';
+} from '../components/mui-treasury/layout-core-v6';
 
 const SidebarLayout: React.FC = () => {
   return (

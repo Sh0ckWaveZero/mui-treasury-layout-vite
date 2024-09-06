@@ -1,13 +1,13 @@
 import React from 'react';
 import { IconButton } from '@mui/material';
 import viteLogo from '/vite.svg';
-import { ColorSchemeSelectIcon } from '../mui-treasury/color-scheme-select-icon';
+import { ColorSchemeSelectIcon } from '../components/mui-treasury/color-scheme-select-icon';
 import {
   applyHeaderStyles,
   Header,
   layoutClasses,
   toggleTemporaryEdgeSidebar,
-} from '../mui-treasury/layout-core-v6';
+} from '../components/mui-treasury/layout-core-v6';
 
 const HeaderLayout: React.FC = () => {
   return (
