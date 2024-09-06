@@ -17,9 +17,7 @@ or:
 
 <!-- #default-branch-switch -->
 
-[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/siriwatknp/mui-treasury/tree/master/examples/mui-treasury-layout-vite)
-
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/github/siriwatknp/mui-treasury/tree/master/examples/mui-treasury-layout-vite)
+[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/~/github.com/Sh0ckWaveZero/mui-treasury-layout-vite)
 
 ## Learn more
 
