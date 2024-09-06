@@ -1,8 +1,12 @@
-import React from 'react'
-import { Footer } from '../mui-treasury/layout-core-v6'
+import React from 'react';
+import { Footer } from '../mui-treasury/layout-core-v6';
 
 const FooterLayout: React.FC = () => {
-  return <Footer sx={{ minHeight: 300 }}>{/* เพิ่มเนื้อหาใน Footer ที่ต้องการ */}</Footer>
-}
+  return (
+    <Footer sx={{ minHeight: 50 }}>
+      {/* เพิ่มเนื้อหาใน Footer ที่ต้องการ */}
+    </Footer>
+  );
+};
 
-export default FooterLayout
+export default FooterLayout;

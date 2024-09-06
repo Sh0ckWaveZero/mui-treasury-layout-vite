@@ -1,1 +1,1 @@
-export * from "./ColorSchemeSelectIcon";
+export * from './ColorSchemeSelectIcon';

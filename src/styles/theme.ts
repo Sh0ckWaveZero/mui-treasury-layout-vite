@@ -23,30 +23,31 @@ const customColors = {
   },
 };
 
-const getTheme = (mode: 'light' | 'dark') => createTheme({
-  palette: {
-    mode,
-    ...customColors,
-  },
-  typography: {
-    fontFamily: 'Roboto, Arial, sans-serif',
-  },
-  colorSchemes: {
-    light: {
-      palette: {
-        mode: 'light',
-        ...light,
-        ...customColors,
+const getTheme = (mode: 'light' | 'dark') =>
+  createTheme({
+    palette: {
+      mode,
+      ...customColors,
+    },
+    typography: {
+      fontFamily: 'Roboto, Arial, sans-serif',
+    },
+    colorSchemes: {
+      light: {
+        palette: {
+          mode: 'light',
+          ...light,
+          ...customColors,
+        },
+      },
+      dark: {
+        palette: {
+          mode: 'dark',
+          ...dark,
+          ...customColors,
+        },
       },
     },
-    dark: {
-      palette: {
-        mode: 'dark',
-        ...dark,
-        ...customColors,
-      },
-    },
-  },
-});
+  });
 
 export default getTheme;

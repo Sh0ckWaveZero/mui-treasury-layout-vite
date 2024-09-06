@@ -1,8 +1,8 @@
-import React from "react";
-import { BoxProps } from "@mui/material/Box";
-import { Breakpoint } from "@mui/material/styles";
-import { layoutClasses } from "./layoutClasses";
-import { styled } from "./zero-styled";
+import React from 'react';
+import { BoxProps } from '@mui/material/Box';
+import { Breakpoint } from '@mui/material/styles';
+import { layoutClasses } from './layoutClasses';
+import { styled } from './zero-styled';
 
 export function applyHeaderStyles(params?: {
   height: string | Partial<Record<Breakpoint, string>>;
@@ -18,33 +18,33 @@ export function applyHeaderStyles(params?: {
     height,
     ...(fullWidth && { zIndex: 3 }),
     [`.${layoutClasses.Root}:has(&)`]: {
-      "--Header-height": height,
+      '--Header-height': height,
       ...(fullWidth && {
         gridTemplateAreas:
-          typeof fullWidth === "string"
+          typeof fullWidth === 'string'
             ? {
                 [fullWidth]: clip,
               }
             : clip,
-        "--Header-clipHeight":
-          typeof fullWidth === "string"
+        '--Header-clipHeight':
+          typeof fullWidth === 'string'
             ? {
-                [fullWidth]: "var(--Header-height)",
+                [fullWidth]: 'var(--Header-height)',
               }
-            : "var(--Header-height)",
+            : 'var(--Header-height)',
       }),
     },
   };
 }
 
-const StyledHeader = styled("header")(({ theme }) => ({
+const StyledHeader = styled('header')(({ theme }) => ({
   gridArea: layoutClasses.Header,
   height: 56, // better than `min-height` because user can set height to 0
-  alignContent: "center",
-  display: "flex",
-  alignItems: "center",
+  alignContent: 'center',
+  display: 'flex',
+  alignItems: 'center',
   top: 0, // for position sticky to work
-  position: "sticky",
+  position: 'sticky',
   background: (theme.vars || theme).palette.background.paper,
   borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
 }));
@@ -57,7 +57,7 @@ const Header = React.forwardRef<HTMLElement, BoxProps>(function Header(
     <StyledHeader
       // @ts-expect-error Material UI issue
       ref={ref}
-      className={`${layoutClasses.Header} ${className || ""}`}
+      className={`${layoutClasses.Header} ${className || ''}`}
       {...props}
     />
   );

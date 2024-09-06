@@ -1,7 +1,7 @@
-import { RouteObject } from 'react-router-dom'
-import Home from '../pages/Home/Home'
-import About from '../pages/About/About'
-import NotFound from '../pages/NotFound/NotFound'
+import { RouteObject } from 'react-router-dom';
+import About from '../pages/About/About';
+import Home from '../pages/Home/Home';
+import NotFound from '../pages/NotFound/NotFound';
 
 const routesConfig: RouteObject[] = [
   {
@@ -16,6 +16,6 @@ const routesConfig: RouteObject[] = [
     path: '*',
     element: <NotFound />,
   },
-]
+];
 
-export default routesConfig
+export default routesConfig;

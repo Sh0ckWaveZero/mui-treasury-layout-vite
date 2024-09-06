@@ -1,99 +1,99 @@
-import React from "react";
+import React from 'react';
 import type {
   PermanentConfig,
   PersistentConfig,
   TemporaryConfig,
-} from "./SharedEdgeSidebar";
-import { BoxProps } from "@mui/material/Box";
-import { Breakpoint, Theme } from "@mui/material/styles";
-import { layoutAttrs, layoutClasses } from "./layoutClasses";
+} from './SharedEdgeSidebar';
+import { BoxProps } from '@mui/material/Box';
+import { Breakpoint, Theme } from '@mui/material/styles';
+import { layoutAttrs, layoutClasses } from './layoutClasses';
 import {
   EdgeSidebarRoot,
   internalCollapseSidebar,
   internalToggleSidebar,
-} from "./SharedEdgeSidebar";
-import { styled } from "./zero-styled";
+} from './SharedEdgeSidebar';
+import { styled } from './zero-styled';
 
 export function applyTemporaryRightStyles(
-  params: Omit<TemporaryConfig, "variant">,
+  params: Omit<TemporaryConfig, 'variant'>,
 ) {
-  const { width = "300px", fullHeight } = params || {};
+  const { width = '300px', fullHeight } = params || {};
   return {
-    "--EdgeSidebar-temporaryWidth": "0px",
+    '--EdgeSidebar-temporaryWidth': '0px',
     [`.${layoutClasses.Root}:has(&)`]: {
-      "--EdgeSidebar-R-variant": "var(--temporary-R)",
+      '--EdgeSidebar-R-variant': 'var(--temporary-R)',
       [`.${layoutClasses.EdgeSidebarRightCollapser}`]: {
-        display: "none",
+        display: 'none',
       },
     },
     [`&[${layoutAttrs.isTemporaryEdgeSidebarOpen}], &[${layoutAttrs.isTemporaryEdgeSidebarClosing}]`]:
       {
-        "--EdgeSidebar-temporaryWidth": width,
+        '--EdgeSidebar-temporaryWidth': width,
       },
     ...(fullHeight
       ? { zIndex: 5 }
-      : { "--SidebarContent-offset": "var(--Header-height)" }),
+      : { '--SidebarContent-offset': 'var(--Header-height)' }),
   };
 }
 
 export function applyPersistentRightStyles(
-  params: Omit<PersistentConfig, "variant">,
+  params: Omit<PersistentConfig, 'variant'>,
 ) {
-  const { width = "256px", persistentBehavior = "fit" } = params || {};
+  const { width = '256px', persistentBehavior = 'fit' } = params || {};
   return {
-    ...(persistentBehavior === "none" && {
+    ...(persistentBehavior === 'none' && {
       zIndex: 2,
-      "--SidebarContent-width": `var(--collapsed-R, var(--_permanentWidth-R, 0px)) var(--uncollapsed-R, ${width})`,
-      "--EdgeSidebar-permanentSlide":
-        "var(--uncollapsed-R, -100%) var(--collapsed-R, 0)",
-      "--SidebarContent-shadow":
-        "0 0 10px rgba(0,0,0,0.1), calc(-1 * var(--EdgeSidebar-sidelineWidth)) 0 var(--EdgeSidebar-sidelineColor)",
-      "&:not([data-edge-uncollapsed])": {
-        "--SidebarContent-shadow": "none",
+      '--SidebarContent-width': `var(--collapsed-R, var(--_permanentWidth-R, 0px)) var(--uncollapsed-R, ${width})`,
+      '--EdgeSidebar-permanentSlide':
+        'var(--uncollapsed-R, -100%) var(--collapsed-R, 0)',
+      '--SidebarContent-shadow':
+        '0 0 10px rgba(0,0,0,0.1), calc(-1 * var(--EdgeSidebar-sidelineWidth)) 0 var(--EdgeSidebar-sidelineColor)',
+      '&:not([data-edge-uncollapsed])': {
+        '--SidebarContent-shadow': 'none',
       },
     }),
     [`.${layoutClasses.Root}:has(&)`]: {
-      "--EdgeSidebar-R-variant": "var(--permanent-R)",
-      "--EdgeSidebar-R-collapsedWidth": "0px",
-      ...(persistentBehavior === "none"
+      '--EdgeSidebar-R-variant': 'var(--permanent-R)',
+      '--EdgeSidebar-R-collapsedWidth': '0px',
+      ...(persistentBehavior === 'none'
         ? {
-            "--EdgeSidebar-R-permanentWidth": "0px",
+            '--EdgeSidebar-R-permanentWidth': '0px',
           }
         : {
             ...(width && {
-              "--EdgeSidebar-R-permanentWidth": width,
+              '--EdgeSidebar-R-permanentWidth': width,
             }),
           }),
-      "--EdgeSidebar-R-collapsible": "var(--collapsed-R)",
+      '--EdgeSidebar-R-collapsible': 'var(--collapsed-R)',
       [`.${layoutClasses.EdgeSidebarRightCollapser}`]: {
-        display: "var(--display, inline-flex)",
+        display: 'var(--display, inline-flex)',
       },
       [`.${layoutClasses.TemporaryEdgeSidebarRightTrigger}`]: {
-        display: "none",
+        display: 'none',
       },
     },
     [`.${layoutClasses.Root}:has(&[${layoutAttrs.isEdgeSidebarUncollapsed}])`]:
       {
-        "--EdgeSidebar-R-collapsible": "var(--uncollapsed-R)",
+        '--EdgeSidebar-R-collapsible': 'var(--uncollapsed-R)',
       },
   };
 }
 
 export function applyPermanentRightStyles(
-  params: Omit<PermanentConfig, "variant">,
+  params: Omit<PermanentConfig, 'variant'>,
 ) {
-  if ("autoCollapse" in params && !params.collapsedWidth) {
+  if ('autoCollapse' in params && !params.collapsedWidth) {
     console.warn(
-      "MUI Treasury Layout: `collapsedWidth` is required when `autoCollapse` is enabled.",
+      'MUI Treasury Layout: `collapsedWidth` is required when `autoCollapse` is enabled.',
     );
   }
   const { width, collapsedWidth } = params;
   const defaultExpandConfig = {
-    delay: "0.3s",
-    shadow: "0 0 10px rgba(0,0,0,0.1)",
+    delay: '0.3s',
+    shadow: '0 0 10px rgba(0,0,0,0.1)',
   };
   let expandConfig: undefined | typeof defaultExpandConfig;
-  if ("expandOnHover" in params) {
+  if ('expandOnHover' in params) {
     if (params.expandOnHover === true) {
       expandConfig = defaultExpandConfig;
     } else {
@@ -101,31 +101,31 @@ export function applyPermanentRightStyles(
     }
   }
   return {
-    "--EdgeSidebar-permanentSlide": "0", // to override persistent styles
-    "--SidebarContent-shadow": "none",
-    "--SidebarContent-width": "var(--_permanentWidth-R, 0px)",
+    '--EdgeSidebar-permanentSlide': '0', // to override persistent styles
+    '--SidebarContent-shadow': 'none',
+    '--SidebarContent-width': 'var(--_permanentWidth-R, 0px)',
     [`.${layoutClasses.Root}:has(&)`]: {
-      "--EdgeSidebar-R-variant": "var(--permanent-R)",
+      '--EdgeSidebar-R-variant': 'var(--permanent-R)',
       ...(width && {
-        "--EdgeSidebar-R-permanentWidth": width,
+        '--EdgeSidebar-R-permanentWidth': width,
       }),
       ...(collapsedWidth && {
-        "--EdgeSidebar-R-collapsedWidth": collapsedWidth,
+        '--EdgeSidebar-R-collapsedWidth': collapsedWidth,
       }),
       [`.${layoutClasses.EdgeSidebarRightCollapser}`]: {
-        display: "var(--display, inline-flex)",
+        display: 'var(--display, inline-flex)',
       },
       [`.${layoutClasses.TemporaryEdgeSidebarRightTrigger}`]: {
-        display: "none",
+        display: 'none',
       },
     },
     ...(expandConfig && {
       [`& .${layoutClasses.EdgeSidebarContent}:hover`]: {
-        "--SidebarContent-width": "var(--EdgeSidebar-R-permanentWidth)",
-        "--SidebarContent-transitionDelay": expandConfig.delay,
-        "--SidebarContent-shadow": `var(--collapsed-R, ${expandConfig.shadow}, calc(-1 * var(--EdgeSidebar-sidelineWidth)) 0 var(--EdgeSidebar-sidelineColor))`,
-        "--EdgeSidebar-permanentSlide":
-          "var(--collapsed-R, calc(var(--EdgeSidebar-R-collapsedWidth) - var(--SidebarContent-width))) var(--uncollapsed-R, 0)",
+        '--SidebarContent-width': 'var(--EdgeSidebar-R-permanentWidth)',
+        '--SidebarContent-transitionDelay': expandConfig.delay,
+        '--SidebarContent-shadow': `var(--collapsed-R, ${expandConfig.shadow}, calc(-1 * var(--EdgeSidebar-sidelineWidth)) 0 var(--EdgeSidebar-sidelineColor))`,
+        '--EdgeSidebar-permanentSlide':
+          'var(--collapsed-R, calc(var(--EdgeSidebar-R-collapsedWidth) - var(--SidebarContent-width))) var(--uncollapsed-R, 0)',
       },
     }),
   };
@@ -138,7 +138,7 @@ export function toggleEdgeSidebarRightCollapse(options: {
   document?: Document | null;
 }) {
   const { sidebarId } = options || {};
-  let selector = ".EdgeSidebar-R";
+  let selector = '.EdgeSidebar-R';
   if (sidebarId) {
     selector = `#${sidebarId}`;
   }
@@ -151,7 +151,7 @@ export function toggleTemporaryEdgeSidebarRight(options?: {
   document?: Document | null;
 }) {
   const { sidebarId } = options || {};
-  let selector = ".EdgeSidebar-R";
+  let selector = '.EdgeSidebar-R';
   if (sidebarId) {
     selector = `#${sidebarId}`;
   }
@@ -174,10 +174,10 @@ export function applyEdgeSidebarRightStyles(params: {
       const variantConfig = config[breakpoint];
       if (variantConfig) {
         const { variant, ...params } = variantConfig;
-        if (variant === "permanent") {
-          if ("autoCollapse" in variantConfig && variantConfig.autoCollapse) {
+        if (variant === 'permanent') {
+          if ('autoCollapse' in variantConfig && variantConfig.autoCollapse) {
             let nextBreakpoint;
-            if (typeof variantConfig.autoCollapse === "number") {
+            if (typeof variantConfig.autoCollapse === 'number') {
               nextBreakpoint = variantConfig.autoCollapse + 0.01;
             } else if (
               theme.breakpoints.keys.includes(variantConfig.autoCollapse)
@@ -191,7 +191,7 @@ export function applyEdgeSidebarRightStyles(params: {
             }
             if (!nextBreakpoint) {
               console.warn(
-                "MUI Treasury Layout: `autoCollapse` cannot be the largest breakpoint.",
+                'MUI Treasury Layout: `autoCollapse` cannot be the largest breakpoint.',
               );
             } else {
               const minBreakpoint = theme.breakpoints.values[breakpoint]
@@ -200,10 +200,10 @@ export function applyEdgeSidebarRightStyles(params: {
               autoCollapseStyles = {
                 [`.${layoutClasses.Root}:has(&)`]: {
                   [theme.breakpoints.between(minBreakpoint, nextBreakpoint)]: {
-                    "--EdgeSidebar-R-collapsible": "var(--collapsed-R)",
+                    '--EdgeSidebar-R-collapsible': 'var(--collapsed-R)',
                   },
                   [theme.breakpoints.up(nextBreakpoint)]: {
-                    "--EdgeSidebar-R-collapsible": "var(--uncollapsed-R)",
+                    '--EdgeSidebar-R-collapsible': 'var(--uncollapsed-R)',
                   },
                 },
                 [theme.breakpoints.between(
@@ -212,11 +212,11 @@ export function applyEdgeSidebarRightStyles(params: {
                 )]: {
                   [`.${layoutClasses.Root}:has(&[${layoutAttrs.isAutoCollapseOff}])`]:
                     {
-                      "--EdgeSidebar-R-collapsible": "var(--uncollapsed-R)",
+                      '--EdgeSidebar-R-collapsible': 'var(--uncollapsed-R)',
                     },
                   [`.${layoutClasses.Root}:has(&) .${layoutClasses.EdgeSidebarRightCollapser}`]:
                     {
-                      "--_autoCollapse": "1",
+                      '--_autoCollapse': '1',
                     },
                 },
               };
@@ -244,58 +244,58 @@ export function applyEdgeSidebarRightStyles(params: {
 const StyledEdgeSidebarRight = styled(EdgeSidebarRoot)({
   [`.${layoutClasses.Root}:has(&)`]: {
     /** Root default settings */
-    "--EdgeSidebar-R-variant": "var(--permanent-R)",
-    "--EdgeSidebar-R-permanentWidth": "256px",
-    "--EdgeSidebar-R-collapsible": "var(--uncollapsed-R)",
+    '--EdgeSidebar-R-variant': 'var(--permanent-R)',
+    '--EdgeSidebar-R-permanentWidth': '256px',
+    '--EdgeSidebar-R-collapsible': 'var(--uncollapsed-R)',
 
     /** DO NOT OVERRIDE, internal variables */
-    "--temporary-R": "var(--EdgeSidebar-R-variant,)",
-    "--permanent-R": "var(--EdgeSidebar-R-variant,)",
-    "--_permanentWidth-R": `var(--uncollapsed-R, var(--EdgeSidebar-R-permanentWidth))
+    '--temporary-R': 'var(--EdgeSidebar-R-variant,)',
+    '--permanent-R': 'var(--EdgeSidebar-R-variant,)',
+    '--_permanentWidth-R': `var(--uncollapsed-R, var(--EdgeSidebar-R-permanentWidth))
                         var(--collapsed-R, var(--EdgeSidebar-R-collapsedWidth, 0px))`,
-    "--collapsed-R": "var(--EdgeSidebar-R-collapsible,)",
-    "--uncollapsed-R": "var(--EdgeSidebar-R-collapsible,)",
+    '--collapsed-R': 'var(--EdgeSidebar-R-collapsible,)',
+    '--uncollapsed-R': 'var(--EdgeSidebar-R-collapsible,)',
 
     /** Collapsible feature */
     [`.${layoutClasses.EdgeSidebarRightCollapser}`]: {
-      display: "var(--display, inline-flex)",
-      "--_sidebarCollapsed": "var(--collapsed-R, 1)",
+      display: 'var(--display, inline-flex)',
+      '--_sidebarCollapsed': 'var(--collapsed-R, 1)',
       [`.${layoutClasses.EdgeSidebarUncollapsedVisible}`]: {
-        display: "var(--collapsed-R, none) var(--uncollapsed-R, inline-block)",
+        display: 'var(--collapsed-R, none) var(--uncollapsed-R, inline-block)',
       },
       [`.${layoutClasses.EdgeSidebarCollapsedVisible}`]: {
-        display: "var(--collapsed-R, inline-block) var(--uncollapsed-R, none)",
+        display: 'var(--collapsed-R, inline-block) var(--uncollapsed-R, none)',
       },
     },
   },
 
   /** Collapsible feature */
   [`.${layoutClasses.Root}:has(&[${layoutAttrs.isEdgeSidebarCollapsed}])`]: {
-    "--EdgeSidebar-R-collapsible": "var(--collapsed-R)",
+    '--EdgeSidebar-R-collapsible': 'var(--collapsed-R)',
   },
 
   /** EdgeSidebar default settings */
-  "--EdgeSidebar-anchor": "var(--anchorRight)",
-  "--SidebarContent-width": "var(--_permanentWidth-R, 0px)",
-  "--_temporary": "var(--temporary-R)",
-  "--_permanent": "var(--permanent-R)",
+  '--EdgeSidebar-anchor': 'var(--anchorRight)',
+  '--SidebarContent-width': 'var(--_permanentWidth-R, 0px)',
+  '--_temporary': 'var(--temporary-R)',
+  '--_permanent': 'var(--permanent-R)',
   gridArea: layoutClasses.EdgeSidebarRight,
   width: `var(--temporary-R, 0)
           var(--permanent-R, var(--_permanentWidth-R))`,
   borderLeft:
-    "var(--permanent, min(var(--EdgeSidebar-sidelineWidth), 1 * var(--SidebarContent-width)) solid)",
-  borderColor: "var(--EdgeSidebar-sidelineColor)",
-  "&::after": {
-    border: "inherit",
+    'var(--permanent, min(var(--EdgeSidebar-sidelineWidth), 1 * var(--SidebarContent-width)) solid)',
+  borderColor: 'var(--EdgeSidebar-sidelineColor)',
+  '&::after': {
+    border: 'inherit',
     right: 0, // prevent Root overflow
   },
-  "&::before": {
+  '&::before': {
     display: `var(--temporary-R, block)
               var(--permanent-R, none)`,
   },
   [`&:not([${layoutAttrs.isTemporaryEdgeSidebarOpen}], [${layoutAttrs.isTemporaryEdgeSidebarClosing}])`]:
     {
-      overflow: "var(--temporary-R, hidden)",
+      overflow: 'var(--temporary-R, hidden)',
     },
 });
 
@@ -306,7 +306,7 @@ const EdgeSidebarRight = React.forwardRef<HTMLDivElement, BoxProps>(
         // @ts-expect-error Material UI issue
         ref={ref}
         {...props}
-        className={`${layoutClasses.EdgeSidebarRight} ${className || ""}`}
+        className={`${layoutClasses.EdgeSidebarRight} ${className || ''}`}
       />
     );
   },

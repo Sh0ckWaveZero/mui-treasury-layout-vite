@@ -1,33 +1,33 @@
 export const layoutClasses = {
-  Root: "Root",
-  Content: "Content",
-  EdgeSidebar: "EdgeSidebar",
-  EdgeSidebarContent: "EdgeSidebarContent",
-  EdgeSidebarCollapser: "EdgeSidebar-collapser",
-  TemporaryEdgeSidebarTrigger: "EdgeSidebar-trigger",
+  Root: 'Root',
+  Content: 'Content',
+  EdgeSidebar: 'EdgeSidebar',
+  EdgeSidebarContent: 'EdgeSidebarContent',
+  EdgeSidebarCollapser: 'EdgeSidebar-collapser',
+  TemporaryEdgeSidebarTrigger: 'EdgeSidebar-trigger',
 
-  TemporaryEdgeSidebarClose: "EdgeTemporaryClose",
-  EdgeSidebarCollapsedVisible: "Icon-uncollapse",
-  EdgeSidebarUncollapsedVisible: "Icon-collapse",
+  TemporaryEdgeSidebarClose: 'EdgeTemporaryClose',
+  EdgeSidebarCollapsedVisible: 'Icon-uncollapse',
+  EdgeSidebarUncollapsedVisible: 'Icon-collapse',
 
-  EdgeSidebarRight: "EdgeSidebar-R",
-  EdgeSidebarRightCollapser: "EdgeSidebar-R-collapser",
-  TemporaryEdgeSidebarRightTrigger: "EdgeSidebar-R-trigger",
+  EdgeSidebarRight: 'EdgeSidebar-R',
+  EdgeSidebarRightCollapser: 'EdgeSidebar-R-collapser',
+  TemporaryEdgeSidebarRightTrigger: 'EdgeSidebar-R-trigger',
 
-  Footer: "Footer",
+  Footer: 'Footer',
 
-  Header: "Header",
+  Header: 'Header',
 
-  InsetSidebar: "InsetSidebar",
-  InsetAvoidingView: "InsetAvoidingView",
-  InsetSidebarContent: "InsetSidebarContent",
+  InsetSidebar: 'InsetSidebar',
+  InsetAvoidingView: 'InsetAvoidingView',
+  InsetSidebarContent: 'InsetSidebarContent',
 };
 
 export const layoutAttrs = {
-  isTemporaryEdgeSidebarOpen: "data-temporary-open",
-  isTemporaryEdgeSidebarClosing: "data-mobile-closing",
-  isEdgeSidebarUncollapsed: "data-edge-uncollapsed",
-  isEdgeSidebarCollapsed: "data-edge-collapsed",
-  isAutoCollapseOff: "data-auto-collapse-off",
-  isEdgeSidebarContentHidden: "data-sidebar-hidden",
+  isTemporaryEdgeSidebarOpen: 'data-temporary-open',
+  isTemporaryEdgeSidebarClosing: 'data-mobile-closing',
+  isEdgeSidebarUncollapsed: 'data-edge-uncollapsed',
+  isEdgeSidebarCollapsed: 'data-edge-collapsed',
+  isAutoCollapseOff: 'data-auto-collapse-off',
+  isEdgeSidebarContentHidden: 'data-sidebar-hidden',
 };

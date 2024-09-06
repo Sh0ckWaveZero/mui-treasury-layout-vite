@@ -1,11 +1,11 @@
-import React from "react";
-import { BoxProps } from "@mui/material/Box";
-import { layoutClasses } from "./layoutClasses";
-import { styled } from "./zero-styled";
+import React from 'react';
+import { BoxProps } from '@mui/material/Box';
+import { layoutClasses } from './layoutClasses';
+import { styled } from './zero-styled';
 
-const StyledInsetAvoidingView = styled("div")({
-  marginRight: "var(--InsetSidebarR-width)",
-  marginLeft: "var(--InsetSidebarL-width)",
+const StyledInsetAvoidingView = styled('div')({
+  marginRight: 'var(--InsetSidebarR-width)',
+  marginLeft: 'var(--InsetSidebarL-width)',
 });
 
 const InsetAvoidingView = React.forwardRef<HTMLDivElement, BoxProps>(
@@ -14,7 +14,7 @@ const InsetAvoidingView = React.forwardRef<HTMLDivElement, BoxProps>(
       <StyledInsetAvoidingView
         // @ts-expect-error Material UI issue
         ref={ref}
-        className={`${layoutClasses.InsetAvoidingView} ${className || ""}`}
+        className={`${layoutClasses.InsetAvoidingView} ${className || ''}`}
         {...props}
       />
     );

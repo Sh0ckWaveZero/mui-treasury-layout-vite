@@ -1,8 +1,13 @@
-import React from 'react'
-import { IconButton } from '@mui/material'
-import viteLogo from '/vite.svg'
-import { applyHeaderStyles, layoutClasses, toggleTemporaryEdgeSidebar, Header } from '../mui-treasury/layout-core-v6'
-import { ColorSchemeSelectIcon } from '../mui-treasury/color-scheme-select-icon'
+import React from 'react';
+import { IconButton } from '@mui/material';
+import viteLogo from '/vite.svg';
+import { ColorSchemeSelectIcon } from '../mui-treasury/color-scheme-select-icon';
+import {
+  applyHeaderStyles,
+  Header,
+  layoutClasses,
+  toggleTemporaryEdgeSidebar,
+} from '../mui-treasury/layout-core-v6';
 
 const HeaderLayout: React.FC = () => {
   return (
@@ -22,13 +27,13 @@ const HeaderLayout: React.FC = () => {
       <IconButton
         className={layoutClasses.TemporaryEdgeSidebarTrigger}
         onClick={() => {
-          toggleTemporaryEdgeSidebar()
+          toggleTemporaryEdgeSidebar();
         }}
       ></IconButton>
-      <img src={viteLogo} className='logo' alt='Vite logo' />
+      <img src={viteLogo} className="logo" alt="Vite logo" />
       <ColorSchemeSelectIcon />
     </Header>
-  )
-}
+  );
+};
 
-export default HeaderLayout
+export default HeaderLayout;

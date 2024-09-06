@@ -1,32 +1,36 @@
-import React from 'react'
-import DarkModeIcon from '@mui/icons-material/DarkModeOutlined'
-import LightModeIcon from '@mui/icons-material/LightModeOutlined'
-import Box from '@mui/material/Box'
-import IconButton from '@mui/material/IconButton'
-import Menu from '@mui/material/Menu'
-import MenuItem from '@mui/material/MenuItem'
-import { useColorScheme } from '@mui/material/styles'
+import React from 'react';
+import DarkModeIcon from '@mui/icons-material/DarkModeOutlined';
+import LightModeIcon from '@mui/icons-material/LightModeOutlined';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { useColorScheme } from '@mui/material/styles';
+import type {} from '@mui/material/themeCssVarsAugmentation';
 
 export function ColorSchemeSelectIcon() {
-  const { mode, systemMode, setMode } = useColorScheme()
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-  const open = Boolean(anchorEl)
+  const { mode, systemMode, setMode } = useColorScheme();
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget)
-  }
+    setAnchorEl(event.currentTarget);
+  };
   const handleClose = () => {
-    setAnchorEl(null)
-  }
+    setAnchorEl(null);
+  };
   const handleMode = (mode: 'system' | 'light' | 'dark') => () => {
-    setMode(mode)
-    handleClose()
-  }
+    setMode(mode);
+    handleClose();
+  };
   if (!mode) {
     return (
       <Box
         sx={(theme) => {
           // copy from OutlinedInput
-          const borderColor = theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+          const borderColor =
+            theme.palette.mode === 'light'
+              ? 'rgba(0, 0, 0, 0.23)'
+              : 'rgba(255, 255, 255, 0.23)';
           return {
             verticalAlign: 'bottom',
             display: 'inline-flex',
@@ -34,23 +38,25 @@ export function ColorSchemeSelectIcon() {
             height: 40,
             borderRadius: (theme.vars || theme).shape.borderRadius,
             border: '1px solid',
-            borderColor: theme.vars ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)` : borderColor,
-          }
+            borderColor: theme.vars
+              ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+              : borderColor,
+          };
         }}
       />
-    )
+    );
   }
-  const resolvedMode = (systemMode || mode) as 'light' | 'dark'
+  const resolvedMode = (systemMode || mode) as 'light' | 'dark';
   const icon = {
     light: <LightModeIcon />,
     dark: <DarkModeIcon />,
-  }[resolvedMode]
+  }[resolvedMode];
   return (
     <>
       <IconButton
         onClick={handleClick}
         disableRipple
-        size='small'
+        size="small"
         sx={{
           borderRadius: '4px',
           '&:hover, &:focus': {
@@ -58,14 +64,14 @@ export function ColorSchemeSelectIcon() {
           },
         }}
         aria-controls={open ? 'color-scheme-menu' : undefined}
-        aria-haspopup='true'
+        aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
       >
         {icon}
       </IconButton>
       <Menu
         anchorEl={anchorEl}
-        id='account-menu'
+        id="account-menu"
         open={open}
         onClose={handleClose}
         onClick={handleClose}
@@ -90,5 +96,5 @@ export function ColorSchemeSelectIcon() {
         </MenuItem>
       </Menu>
     </>
-  )
+  );
 }

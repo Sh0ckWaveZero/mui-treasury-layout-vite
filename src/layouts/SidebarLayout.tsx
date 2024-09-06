@@ -1,15 +1,15 @@
-import React from 'react'
-import { ButtonBase } from '@mui/material'
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
+import React from 'react';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import { ButtonBase } from '@mui/material';
 import {
   applyEdgeSidebarStyles,
-  layoutClasses,
   EdgeSidebar,
   EdgeSidebarContent,
   EdgeTemporaryClose,
+  layoutClasses,
   toggleEdgeSidebarCollapse,
-} from '../mui-treasury/layout-core-v6'
+} from '../mui-treasury/layout-core-v6';
 
 const SidebarLayout: React.FC = () => {
   return (
@@ -39,12 +39,16 @@ const SidebarLayout: React.FC = () => {
           onClick={(event) => toggleEdgeSidebarCollapse({ event })}
           sx={{ height: 48, mt: 'auto' }}
         >
-          <KeyboardArrowLeft className={layoutClasses.EdgeSidebarUncollapsedVisible} />
-          <KeyboardArrowRight className={layoutClasses.EdgeSidebarCollapsedVisible} />
+          <KeyboardArrowLeft
+            className={layoutClasses.EdgeSidebarUncollapsedVisible}
+          />
+          <KeyboardArrowRight
+            className={layoutClasses.EdgeSidebarCollapsedVisible}
+          />
         </ButtonBase>
       </EdgeSidebarContent>
     </EdgeSidebar>
-  )
-}
+  );
+};
 
-export default SidebarLayout
+export default SidebarLayout;

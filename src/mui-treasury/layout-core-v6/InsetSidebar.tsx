@@ -1,8 +1,8 @@
-import React from "react";
-import { BoxProps } from "@mui/material/Box";
-import { Breakpoint } from "@mui/material/styles";
-import { layoutClasses } from "./layoutClasses";
-import { styled } from "./zero-styled";
+import React from 'react';
+import { BoxProps } from '@mui/material/Box';
+import { Breakpoint } from '@mui/material/styles';
+import { layoutClasses } from './layoutClasses';
+import { styled } from './zero-styled';
 
 export function applyInsetSidebarStyles(params: {
   width: string | Partial<Record<Breakpoint, string>>;
@@ -11,14 +11,14 @@ export function applyInsetSidebarStyles(params: {
    * @default "sticky"
    */
   position?:
-    | "fixed"
-    | "absolute"
-    | "sticky"
-    | Record<Breakpoint, "fixed" | "absolute" | "sticky">;
+    | 'fixed'
+    | 'absolute'
+    | 'sticky'
+    | Record<Breakpoint, 'fixed' | 'absolute' | 'sticky'>;
 }) {
-  const { width, position = "sticky" } = params;
+  const { width, position = 'sticky' } = params;
   let positionStyles: Record<string, string> = {};
-  if (position && typeof position !== "string") {
+  if (position && typeof position !== 'string') {
     Object.entries(position).forEach(([key, value]) => {
       positionStyles[key] = `var(--${value},)`;
     });
@@ -32,43 +32,43 @@ export function applyInsetSidebarStyles(params: {
     [`.${layoutClasses.Root}:has(&:last-child)`]: {
       [`--InsetSidebarR-width`]: width,
     },
-    ...(typeof width !== "string" && {
+    ...(typeof width !== 'string' && {
       display: {
-        xs: "none",
-        [Object.keys(width)[0]]: "block",
+        xs: 'none',
+        [Object.keys(width)[0]]: 'block',
       },
     }),
-    "--InsetSidebar-position":
-      typeof position === "string" ? `var(--${position},)` : positionStyles,
+    '--InsetSidebar-position':
+      typeof position === 'string' ? `var(--${position},)` : positionStyles,
   };
 }
 
-const InsetSidebarRoot = styled("aside")({
-  "--InsetSidebar-position": "var(--sticky)",
+const InsetSidebarRoot = styled('aside')({
+  '--InsetSidebar-position': 'var(--sticky)',
   /** DO NOT OVERRIDE, internal variables */
-  "--sticky": "var(--InsetSidebar-position,)",
-  "--fixed": "var(--InsetSidebar-position,)",
-  "--absolute": "var(--InsetSidebar-position,)",
-  "--anchor-right": "var(--InsetSidebar-anchor,)",
-  "--anchor-left": "var(--InsetSidebar-anchor,)",
-  width: "200px",
-  position: "relative",
+  '--sticky': 'var(--InsetSidebar-position,)',
+  '--fixed': 'var(--InsetSidebar-position,)',
+  '--absolute': 'var(--InsetSidebar-position,)',
+  '--anchor-right': 'var(--InsetSidebar-anchor,)',
+  '--anchor-left': 'var(--InsetSidebar-anchor,)',
+  width: '200px',
+  position: 'relative',
   flexShrink: 0,
-  "&:not(:last-child)": {
-    "--InsetSidebar-anchor": "var(--anchor-left)",
+  '&:not(:last-child)': {
+    '--InsetSidebar-anchor': 'var(--anchor-left)',
   },
-  "&:last-child": {
-    "--InsetSidebar-anchor": "var(--anchor-right)",
+  '&:last-child': {
+    '--InsetSidebar-anchor': 'var(--anchor-right)',
   },
-  "*:has(> &)": {
-    display: "flex",
-    flexFlow: "row nowrap",
+  '*:has(> &)': {
+    display: 'flex',
+    flexFlow: 'row nowrap',
     flexGrow: 1,
   },
   // TODO: open an issue on Pigment CSS, :where(:not(...)) is not working
   [`*:has(> &) > :not([class*="${layoutClasses.InsetSidebar}"])`]: {
     flexGrow: 1,
-    overflow: "auto",
+    overflow: 'auto',
   },
 });
 
@@ -78,7 +78,7 @@ const InsetSidebar = React.forwardRef<HTMLDivElement, BoxProps>(
       <InsetSidebarRoot
         // @ts-expect-error Material UI issue
         ref={ref}
-        className={`${layoutClasses.InsetSidebar} ${className || ""}`}
+        className={`${layoutClasses.InsetSidebar} ${className || ''}`}
         {...props}
       >
         {children}
