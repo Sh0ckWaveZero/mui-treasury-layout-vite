@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import { ButtonBase } from '@mui/material';
+import { IconNavMockup } from '../components/mui-treasury/IconNav';
 import {
   applyEdgeSidebarStyles,
   EdgeSidebar,
@@ -12,6 +13,13 @@ import {
 } from '../components/mui-treasury/layout-core-v6';
 
 const SidebarLayout: React.FC = () => {
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const handleToggleCollapse = (event: React.MouseEvent) => {
+    toggleEdgeSidebarCollapse({ event });
+    setIsCollapsed(!isCollapsed);
+  };
+
   return (
     <EdgeSidebar
       sx={(theme) => ({
@@ -32,11 +40,12 @@ const SidebarLayout: React.FC = () => {
         }),
       })}
     >
+      <IconNavMockup isCollapsed={isCollapsed} />
       <EdgeTemporaryClose />
       <EdgeSidebarContent>
         <ButtonBase
           className={layoutClasses.EdgeSidebarCollapser}
-          onClick={(event) => toggleEdgeSidebarCollapse({ event })}
+          onClick={handleToggleCollapse}
           sx={{ height: 48, mt: 'auto' }}
         >
           <KeyboardArrowLeft
